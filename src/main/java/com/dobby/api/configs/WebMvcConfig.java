@@ -18,8 +18,14 @@ public class WebMvcConfig {
 			@Override
 			public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 				config.setBasePath("/api");
+				config.getCorsRegistry()
+					.addMapping("/api/**")
+					.allowedOrigins("*");
+
 				persistentEntities.getManagedTypes().forEach(entity -> config.exposeIdsFor(entity.getType()));
 			}
 		};
 	}
+
+
 }
